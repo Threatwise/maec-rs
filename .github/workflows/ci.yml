@@ -12,14 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust toolchain
-        uses: actions/setup-rust@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          rust-version: stable
-
-      - name: Install rustfmt & clippy
-        run: |
-          rustup component add rustfmt || true
-          rustup component add clippy || true
+          components: rustfmt, clippy
 
       - name: Format check
         run: cargo fmt --all -- --check
